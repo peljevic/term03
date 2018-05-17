@@ -355,15 +355,15 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1038455650}
-  - component: {fileID: 1038455649}
   - component: {fileID: 1038455648}
+  - component: {fileID: 1038455649}
   m_Layer: 0
   m_Name: Tile Manager2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1038455648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1467768198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileGraph: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
-  _tileSet: {fileID: 11400000, guid: fe4f456b80316f14289acf17c3d500aa, type: 2}
+  _tileSet: {fileID: 11400000, guid: 8251bda5ab4156240acead18a7e6ae26, type: 2}
   _boundaryTile: 0
   _substeps: 5
   _seed: 1

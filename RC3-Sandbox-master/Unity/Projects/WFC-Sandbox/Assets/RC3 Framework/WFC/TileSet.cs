@@ -63,9 +63,20 @@ namespace RC3.WFC
             return tileSet;
         }
 
+        public static TileSet<T> CreateRhombicDodecaheral(int tileCount)
+        {
+            const int n = 12;
+            var tileSet = new TileSet<T>(tileCount, n);
+
+            for (int i = 0; i < n; i += 2)
+                tileSet.MakeOpposites(i, i + 1);
+
+            return tileSet;
+        }
+
         #endregion
 
-    
+
         private T[][] _labels; // labels [direction][tile]
         private int[] _opposites; // the opposite direction for each direction
         private int _tileCount;

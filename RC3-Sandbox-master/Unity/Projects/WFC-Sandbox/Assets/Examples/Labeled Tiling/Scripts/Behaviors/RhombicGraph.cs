@@ -46,9 +46,22 @@ namespace RC3.Unity.Examples.LabeledTiling
 
             foreach (var p in GetVertexPositions())
             {
-                var vobj = Instantiate(_vertexPrefab, transform);
-                vobj.transform.localPosition = p * 2.0f;
+                var vPos = transform.position;
+
+                vPos.x = p.x * 1.4f;
+                vPos.y = p.y * 1.4f;
+                vPos.z = p.z * 2f;
+
+
+                var vobj = Instantiate(_vertexPrefab, vPos, transform.rotation);
+                //var vPos = vobj.transform.localPosition; //= p * 2.0f;
+               
+                //vPos.x = p.x * 2f;  // 1.4f;
+                //vPos.y = p.y * 2.8f;
+                //vPos.z = p.z * 2f;
+
                 vobj.Vertex = count++;
+
                 yield return vobj;
             }
         }
@@ -65,7 +78,13 @@ namespace RC3.Unity.Examples.LabeledTiling
                 for (int y = 0; y < _countY; y++)
                 {
                     for (int x = 0; x < _countX; x++)
-                        yield return new Vector3(x, y, z);
+                    {
+                        //if (x % 2 == 0)
+                        //    yield return new Vector3(x, y, z);
+
+                       // else
+                           yield return new Vector3(x + 0.5f, y + 0.7f, z-0.5f);
+                    }
                 }
             }
 
@@ -74,11 +93,15 @@ namespace RC3.Unity.Examples.LabeledTiling
                 for (int y = 0; y < _countY; y++)
                 {
                     for (int x = 0; x < _countX; x++)
-                        yield return new Vector3(x + 0.7f, y + 0.5f, z + 0.5f);
+                    {
+                       // if (x % 2 == 0)
+                       //     yield return new Vector3(x + 0.5f, y + 0.7f, z + 0.5f);
+                       // else
+                            yield return new Vector3(x, y+1.2f, z);
+                    }
                 }
             }
         }
-
 
         /*
         /// <summary>
@@ -103,8 +126,6 @@ namespace RC3.Unity.Examples.LabeledTiling
             }
         }
         */
-
-
-
+        
     }
 }
