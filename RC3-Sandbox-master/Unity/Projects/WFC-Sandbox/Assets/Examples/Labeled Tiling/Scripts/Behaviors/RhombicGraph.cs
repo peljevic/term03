@@ -51,15 +51,9 @@ namespace RC3.Unity.Examples.LabeledTiling
                 vPos.x = p.x * 1.4f;
                 vPos.y = p.y * 1.4f;
                 vPos.z = p.z * 2f;
-
-
+                
                 var vobj = Instantiate(_vertexPrefab, vPos, transform.rotation);
-                //var vPos = vobj.transform.localPosition; //= p * 2.0f;
-               
-                //vPos.x = p.x * 2f;  // 1.4f;
-                //vPos.y = p.y * 2.8f;
-                //vPos.z = p.z * 2f;
-
+             
                 vobj.Vertex = count++;
 
                 yield return vobj;
