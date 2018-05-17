@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grid: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
-  _tileSet: {fileID: 11400000, guid: fe4f456b80316f14289acf17c3d500aa, type: 2}
+  _tileSet: {fileID: 11400000, guid: 961a13e30938ef34e8fd7dc360e9cb7f, type: 2}
   mySkin: {fileID: 11400000, guid: 78eaab7ce2c561c4c8deb66c491b58b2, type: 2}
 --- !u!114 &725683708
 MonoBehaviour:
@@ -360,7 +360,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 725683706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 812.5, y: 200.5, z: 0}
+  m_LocalPosition: {x: 812.5, y: 268.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 978059170}
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileGraph: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
-  _tileSet: {fileID: 11400000, guid: fe4f456b80316f14289acf17c3d500aa, type: 2}
+  _tileSet: {fileID: 11400000, guid: 961a13e30938ef34e8fd7dc360e9cb7f, type: 2}
   _boundaryTile: 0
   _substeps: 5
   _seed: 1
@@ -494,9 +494,9 @@ MonoBehaviour:
   _tileGraph: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
   _vertexPrefab: {fileID: 114922904220032880, guid: 2d3bfc3d1154a114a9d47325987aee28,
     type: 2}
-  _countX: 7
+  _countX: 5
   _countY: 7
-  _countZ: 7
+  _countZ: 5
 --- !u!1 &1979927642
 GameObject:
   m_ObjectHideFlags: 0

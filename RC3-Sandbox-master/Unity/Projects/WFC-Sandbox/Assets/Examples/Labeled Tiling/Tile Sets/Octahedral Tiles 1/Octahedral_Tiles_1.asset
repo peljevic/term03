@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1a5c79eefc2404fa21f402c390395c, type: 3}
+  m_Name: Octahedral_Tiles_1
+  m_EditorClassIdentifier: 
+  _tiles:
+  - {fileID: 11400000, guid: bc36edd55a9de1548ae0e8dc7157c494, type: 2}
+  - {fileID: 11400000, guid: 7fe22aab389f4914b896143c4d060b5c, type: 2}
+  - {fileID: 11400000, guid: e7d5e7564d7078447b07177f7ddfe63b, type: 2}
+  - {fileID: 11400000, guid: 458ac30a870666546b5c8c492a0bee01, type: 2}
+  - {fileID: 11400000, guid: d960f8421f59331459cfd4c620273637, type: 2}
+  - {fileID: 11400000, guid: a01939eb0fe35ad448e8ac3882f90a12, type: 2}
+  - {fileID: 11400000, guid: c50a5dbd1bd4b7b4faf60c84472980fe, type: 2}
+  - {fileID: 11400000, guid: cb6ed8755e91c294f9037bafc75d0ec7, type: 2}
+  - {fileID: 11400000, guid: 58968378c7e5cb0439d5713485779bde, type: 2}
+  - {fileID: 11400000, guid: da13cf17d70229944abaecb1c3530301, type: 2}
+  - {fileID: 11400000, guid: 1d5aa1f075f099b49bdc3ae24c7bd752, type: 2}
+  - {fileID: 11400000, guid: bc0d7bb337a7b794a86b8386e48ea459, type: 2}
+  - {fileID: 11400000, guid: 486055bb830a00a4696719faed3b830f, type: 2}
+  - {fileID: 11400000, guid: 3392d81275616fe49bddc3af54f175e4, type: 2}
+  - {fileID: 11400000, guid: dc662ab419e391a44bbac27ecdd08864, type: 2}
+  - {fileID: 11400000, guid: dd5db18504a8bb44c8360c736e6b58bb, type: 2}
+  - {fileID: 11400000, guid: 3eda8e50e8f09034ea14906de5f22739, type: 2}
+  - {fileID: 11400000, guid: 5da8db41ca54d2049815458fb063ff0e, type: 2}
+  - {fileID: 11400000, guid: ff33ec6fd42887442afb6479cca65112, type: 2}
+  - {fileID: 11400000, guid: 9728e4ad954e7a8418b44c0e4aff8252, type: 2}
+  - {fileID: 11400000, guid: abfaef1d4c194444f94ef9d9c5abb7a5, type: 2}
