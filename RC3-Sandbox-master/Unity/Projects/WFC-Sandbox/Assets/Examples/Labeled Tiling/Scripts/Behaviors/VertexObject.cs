@@ -15,6 +15,7 @@ namespace RC3.Unity.Examples.LabeledTiling
         private MeshFilter _filter;
         private MeshRenderer _renderer;
         private Vector3 _scale;
+        [SerializeField] private Rigidbody _rigidbody;
 
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace RC3.Unity.Examples.LabeledTiling
 
             _filter.sharedMesh = _tile.Mesh;
             _renderer.sharedMaterial = _tile.Material;
+            _rigidbody.isKinematic = true;
             _child.SetActive(false);
         }
 
