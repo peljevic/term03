@@ -16,7 +16,7 @@ namespace RC3.Unity.Examples.LabeledTiling
         [SerializeField] private Mesh _mesh;
         [SerializeField] private Material _material;
         [SerializeField, HideInInspector] private string[] _labels;
-
+        
 
         /// <summary>
         /// 

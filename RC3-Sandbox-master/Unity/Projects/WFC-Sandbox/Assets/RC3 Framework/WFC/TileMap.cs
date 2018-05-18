@@ -27,6 +27,10 @@ namespace RC3.WFC
             get { return _tileCount; }
         }
 
+        public int[][][] Tables
+        {
+            get { return _tables; }
+        }
 
         /// <summary>
         /// The number of neighbors for each tile in this map.

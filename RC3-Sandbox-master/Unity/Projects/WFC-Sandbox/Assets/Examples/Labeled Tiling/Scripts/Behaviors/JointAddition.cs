@@ -31,8 +31,64 @@ namespace RC3.Unity.Examples.LabeledTiling
            // _list = new int[_tileSet.Count];
             _graph = _grid.Graph;
             _vertices = _grid.VertexObjects;
+           
            // _unassigned = _graph.VertexCount;
 
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.J)) AddJoints();
+        }
+
+        private void GetRigidbodies()
+        {
+            for(int i =0; i<_vertices.Count; i++)
+            {
+                int counter = 0;
+
+                var v = _vertices[i];
+                if (v.Body.isKinematic == true)
+                {
+                    _bodies[counter] = v.Body;
+                    counter++;
+                }
+            }
+        }
+
+        private void AddJoints()
+        {
+            for (int i=0; i<_vertices.Count; i++)
+            { 
+            //foreach (var v in _vertices)
+            
+                var neigbours = _graph.GetVertexNeighborsOut(i);
+                var v = _vertices[i];
+
+                foreach (var n in neigbours)
+                {
+                    if (v.Body.isKinematic == true && _vertices[i] != _vertices[n])
+                    {
+                        var joint = v.gameObject.AddComponent<FixedJoint>();
+                        joint.connectedBody = _vertices[n].GetComponent<Rigidbody>();
+
+                        joint.breakForce = BreakForce;
+                        joint.breakTorque = BreakTorque;
+                    }
+                }
+            }
+
+        }
+
+        private void ConnectBodies(Rigidbody bodyA, FixedJoint[] jointsA, Rigidbody bodyB, FixedJoint[] jointsB, int index)
+        {
+            var joint = bodyA.gameObject.AddComponent<FixedJoint>();
+            joint.connectedBody = bodyB;
+
+            joint.breakForce = BreakForce;
+            joint.breakTorque = BreakTorque;
+
+            jointsA[index] = jointsB[index + 3] = joint;
         }
 
     }

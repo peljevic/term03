@@ -10,13 +10,15 @@ namespace RC3.Unity.Examples.LabeledTiling
     public class VertexObject : RC3.Unity.VertexObject
     {
         [SerializeField] private Tile _tile;
-        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField, HideInInspector] private List<Rigidbody> _bodies;
+        //[SerializeField] private Rigidbody _rigidbody;
 
+        private Rigidbody _rigidbody;
         private GameObject _child;
         private MeshFilter _filter;
         private MeshRenderer _renderer;
         private Vector3 _scale;
-       
+        private int _counter=0;
 
 
         /// <summary>
@@ -32,6 +34,17 @@ namespace RC3.Unity.Examples.LabeledTiling
             }
         }
 
+        public Rigidbody Body
+        {
+            get { return _rigidbody; }
+        }
+
+        public List<Rigidbody> Bodies
+        {
+            get { return _bodies; }
+
+        }
+
 
         /// <summary>
         /// 
@@ -42,6 +55,7 @@ namespace RC3.Unity.Examples.LabeledTiling
             _filter = GetComponent<MeshFilter>();
             _renderer = GetComponent<MeshRenderer>();
             _scale = transform.localScale;
+            _rigidbody = GetComponent<Rigidbody>();
 
             OnSetTile();
         }
@@ -66,7 +80,9 @@ namespace RC3.Unity.Examples.LabeledTiling
             _filter.sharedMesh = _tile.Mesh;
             _renderer.sharedMaterial = _tile.Material;
             _rigidbody.isKinematic = true;
+            _bodies.Add(_rigidbody);
             _child.SetActive(false);
+            _counter++;
         }
 
 
