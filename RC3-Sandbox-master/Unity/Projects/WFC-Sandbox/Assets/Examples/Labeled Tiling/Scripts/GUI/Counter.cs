@@ -10,11 +10,11 @@ namespace RC3.Unity.Examples.LabeledTiling
     {
         [SerializeField] private SharedDigraph _grid;       
         [SerializeField] private TileSet _tileSet;
+        [SerializeField] private GUISkin mySkin;
+
         private List<VertexObject> _vertices;
         private Digraph _graph;
         private int _unassigned;
-        public GUISkin mySkin;
-
         private int[] _list;
 
         private void Start()
@@ -59,6 +59,7 @@ namespace RC3.Unity.Examples.LabeledTiling
             GUI.skin = mySkin;
             GUI.Label(new Rect(new Vector2(35, 370), new Vector2(350, 100)), "graph capacity:" + _graph.VertexCount.ToString());
             GUI.Label(new Rect(new Vector2(Screen.width - 165, 120), new Vector2(250, 100)), "unassigned : " + _unassigned.ToString());
+
             for (int i = 0; i < _tileSet.Count; i++)
             {               
                 GUI.Label(new Rect(new Vector2(Screen.width - 165, 140 + 20*i), new Vector2(250, 100)), "tile type " + i + " : " + _list[i].ToString());

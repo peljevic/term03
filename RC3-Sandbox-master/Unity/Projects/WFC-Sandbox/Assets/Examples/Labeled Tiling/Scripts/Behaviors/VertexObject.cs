@@ -10,12 +10,13 @@ namespace RC3.Unity.Examples.LabeledTiling
     public class VertexObject : RC3.Unity.VertexObject
     {
         [SerializeField] private Tile _tile;
+        [SerializeField] private Rigidbody _rigidbody;
 
         private GameObject _child;
         private MeshFilter _filter;
         private MeshRenderer _renderer;
         private Vector3 _scale;
-        [SerializeField] private Rigidbody _rigidbody;
+       
 
 
         /// <summary>
