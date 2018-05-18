@@ -39,6 +39,8 @@ namespace RC3.Unity.Examples.LabeledTiling
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.J)) AddJoints();
+
+            if (Input.GetKeyDown(KeyCode.G)) AddGravity();
         }
 
         private void GetRigidbodies()
@@ -53,6 +55,17 @@ namespace RC3.Unity.Examples.LabeledTiling
                     _bodies[counter] = v.Body;
                     counter++;
                 }
+            }
+        }
+
+        private void AddGravity()
+        {
+            
+
+            foreach (var v in _vertices)
+            {
+                var b =v.GetComponent<Rigidbody>();
+                b.useGravity = true;
             }
         }
 
@@ -80,16 +93,6 @@ namespace RC3.Unity.Examples.LabeledTiling
 
         }
 
-        private void ConnectBodies(Rigidbody bodyA, FixedJoint[] jointsA, Rigidbody bodyB, FixedJoint[] jointsB, int index)
-        {
-            var joint = bodyA.gameObject.AddComponent<FixedJoint>();
-            joint.connectedBody = bodyB;
-
-            joint.breakForce = BreakForce;
-            joint.breakTorque = BreakTorque;
-
-            jointsA[index] = jointsB[index + 3] = joint;
-        }
 
     }
 }
