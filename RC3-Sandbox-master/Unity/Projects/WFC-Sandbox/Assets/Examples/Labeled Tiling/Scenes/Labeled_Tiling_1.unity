@@ -561,8 +561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grid: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
   _tileSet: {fileID: 11400000, guid: 961a13e30938ef34e8fd7dc360e9cb7f, type: 2}
-  MaxForce: 50
-  MaxTorque: 50
+  MaxForce: 10
+  MaxTorque: 10
   Spectrum:
   - {r: 0.875, g: 0.34047377, b: 0.21875, a: 1}
   - {r: 0.64705884, g: 0.5899654, b: 0.5958716, a: 0}
