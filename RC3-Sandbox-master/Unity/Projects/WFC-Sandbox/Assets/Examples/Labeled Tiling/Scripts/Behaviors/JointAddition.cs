@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using RC3.Graphs;
+using System;
 
 namespace RC3.Unity.Examples.LabeledTiling
 {
@@ -10,7 +11,8 @@ namespace RC3.Unity.Examples.LabeledTiling
     {
         [SerializeField] private SharedDigraph _grid;
         [SerializeField] private TileSet _tileSet;
-        private List<VertexObject> _vertices;
+
+        List<VertexObject> _vertices;
         private Digraph _graph;
 
         [Range(0.0f, 10000.0f)]
@@ -22,7 +24,8 @@ namespace RC3.Unity.Examples.LabeledTiling
         private float BreakForce = Mathf.Infinity;
         private float BreakTorque = Mathf.Infinity;
 
-        private Rigidbody[] _bodies;
+        private List<VertexObject> _vbodies;
+        private List<Rigidbody> _bodies;
         private List<Material> _materials;
         private List<FixedJoint> _joints;
 
@@ -30,17 +33,20 @@ namespace RC3.Unity.Examples.LabeledTiling
 
         private void Start()
         {
-           // _list = new int[_tileSet.Count];
+            // _list = new int[_tileSet.Count];
             _graph = _grid.Graph;
             _vertices = _grid.VertexObjects;
+            _vbodies = new List<VertexObject>();
 
-           // _materials = new Material[_vertices.Count]; 
-           //CacheMaterials();
-           
+            // _materials = new Material[_vertices.Count]; 
+            //CacheMaterials();
+
         }
 
         private void Update()
         {
+            //CacheMaterials();
+
             if (Input.GetKeyDown(KeyCode.J)) AddJoints();
 
             if (Input.GetKeyDown(KeyCode.G)) AddGravity();
@@ -48,7 +54,7 @@ namespace RC3.Unity.Examples.LabeledTiling
 
         private void GetRigidbodies()
         {
-            for(int i =0; i<_vertices.Count; i++)
+            for (int i = 0; i < _vertices.Count; i++)
             {
                 int counter = 0;
 
@@ -63,10 +69,8 @@ namespace RC3.Unity.Examples.LabeledTiling
 
         private void AddGravity()
         {
-            
             foreach (var v in _vertices)
             {
-                
                 if (v.Tile.name != _tileSet[0].name)
                 {
                     var b = v.GetComponent<Rigidbody>();
@@ -74,37 +78,61 @@ namespace RC3.Unity.Examples.LabeledTiling
                 }
                 else if (v.Tile.name == _tileSet[0].name)
                 {
-                    v.Body.isKinematic = false;
-                    Debug.Log("0 tile!"); 
+                    // v.Body.isKinematic = false;
+                    Debug.Log("0 tile!");
                 }
+            }
+        }
+
+        void GravityAddition(List<Rigidbody> rigidbodies)
+        {
+            foreach (var r in rigidbodies)
+            {
+                r.useGravity = true;
             }
         }
 
         private void AddJoints()
         {
-            for (int i=0; i<_vertices.Count; i++)
-            { 
-            //foreach (var v in _vertices)
-            
+            for (int i = 0; i < _vertices.Count; i++)
+            {
+                //foreach (var v in _vertices)
+
                 var neigbours = _graph.GetVertexNeighborsOut(i);
                 var v = _vertices[i];
 
                 foreach (var n in neigbours)
                 {
-                    if (v.Body.isKinematic == true && v != _vertices[n] && v.Tile.name != _tileSet[0].name && _vertices[n].Tile.name != _tileSet[0].name)
+                    var vn = _vertices[n];
+
+                    if (/*v.Body.isKinematic == true &&*/ v != _vertices[n] && v.Tile.name != _tileSet[0].name && vn.Tile.name != _tileSet[0].name)
+                    //v.Tile.Mesh==null && nv.Tile.Mesh==null)
+                    // v.Tile.name != _tileSet[0].name && _vertices[n].Tile.name != _tileSet[0].name)
                     {
                         var joint = v.gameObject.AddComponent<FixedJoint>();
-                        joint.connectedBody = _vertices[n].GetComponent<Rigidbody>();
+                        joint.connectedBody = vn.GetComponent<Rigidbody>();
 
                         joint.breakForce = BreakForce;
                         joint.breakTorque = BreakTorque;
 
-                    //     _joints.Add(joint);
+                        if(_vbodies.Contains(v) == false) _vbodies.Add(v);
 
+                        Debug.Log(_vbodies.Count);
+
+                        //     _joints.Add(joint);
                     }
                 }
             }
 
+            if (_vbodies != null)
+            {
+                foreach (var r in _vbodies)
+                {
+                    var body = r.Body;
+                    body.useGravity = true;
+                }
+            }
+            //GravityAddition(_bodies);
         }
 
         /*
@@ -133,7 +161,7 @@ namespace RC3.Unity.Examples.LabeledTiling
 
             while (true)
             {
-                for (int i = 0; i < _materials.Length; i++)
+                for (int i = 0; i < _materials.Count; i++)
                 {
                     var m = _materials[i];
 
@@ -145,14 +173,15 @@ namespace RC3.Unity.Examples.LabeledTiling
             }
         }
 
+      
         private Color GetTorqueColor(int index)
         {
-            var joints = _joints[index];
+            //var joints = _joints[index];
 
             float sum = 0.0f;
             int count = 0;
 
-            foreach (var j in _joints[index])
+            foreach (var j in _joints)//[index])
             {
                 if (j != null)
                 {
@@ -167,11 +196,13 @@ namespace RC3.Unity.Examples.LabeledTiling
             return Lerp(Spectrum, sum / (count * MaxTorque));
         }
 
+       
+
         public static Color Lerp(IReadOnlyList<Color> colors, float factor)
         {
             int last = colors.Count - 1;
             int i;
-            factor = SlurMathf.Fract(factor * last, out i);
+           // factor = Fract(factor * last, out i);
 
             if (i < 0)
                 return colors[0];
@@ -180,6 +211,8 @@ namespace RC3.Unity.Examples.LabeledTiling
 
             return Color.LerpUnclamped(colors[i], colors[i + 1], factor);
         }
+
+
 
         private Color GetForceColor(int index)
         {
@@ -203,7 +236,7 @@ namespace RC3.Unity.Examples.LabeledTiling
             return Lerp(Spectrum, sum / (count * MaxTorque));
         }
         */
-         
+
 
     }
 }

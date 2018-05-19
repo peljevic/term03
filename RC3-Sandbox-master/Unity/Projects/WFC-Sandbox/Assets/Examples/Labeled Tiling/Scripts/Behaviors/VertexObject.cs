@@ -79,8 +79,9 @@ namespace RC3.Unity.Examples.LabeledTiling
 
             _filter.sharedMesh = _tile.Mesh;
             _renderer.sharedMaterial = _tile.Material;
-            _rigidbody.isKinematic = true;
-            _bodies.Add(_rigidbody);
+            //_rigidbody.isKinematic = true;
+           // if(_tile.name == _tileSet[0].name)   
+             _bodies.Add(_rigidbody);
             _child.SetActive(false);
             _counter++;
         }
