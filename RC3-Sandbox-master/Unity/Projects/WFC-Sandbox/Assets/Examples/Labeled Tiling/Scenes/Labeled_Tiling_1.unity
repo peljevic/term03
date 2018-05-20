@@ -447,7 +447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4641953334109204, guid: a77d3c38dac614b7b924531f4d554837, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7.2
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 4641953334109204, guid: a77d3c38dac614b7b924531f4d554837, type: 2}
       propertyPath: m_LocalPosition.z
@@ -545,9 +545,9 @@ MonoBehaviour:
   _tileGraph: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
   _vertexPrefab: {fileID: 114922904220032880, guid: 2d3bfc3d1154a114a9d47325987aee28,
     type: 2}
-  _countX: 7
-  _countY: 9
-  _countZ: 5
+  _countX: 5
+  _countY: 15
+  _countZ: 7
 --- !u!114 &1467768201
 MonoBehaviour:
   m_ObjectHideFlags: 0
