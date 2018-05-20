@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
  * Notes
  * 
  * Tiles must be scaled by -1 in the x if modeled in a right hand coordinate system.

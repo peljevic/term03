@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grid: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
-  _tileSet: {fileID: 11400000, guid: 961a13e30938ef34e8fd7dc360e9cb7f, type: 2}
+  _tileSet: {fileID: 11400000, guid: 5f7e3f582c8a42b4faeddf15aca11a96, type: 2}
   mySkin: {fileID: 11400000, guid: 78eaab7ce2c561c4c8deb66c491b58b2, type: 2}
 --- !u!114 &725683708
 MonoBehaviour:
@@ -360,7 +360,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 725683706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 681, y: 222.5, z: 0}
+  m_LocalPosition: {x: 703.5, y: 368, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 978059170}
@@ -447,7 +447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4641953334109204, guid: a77d3c38dac614b7b924531f4d554837, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7
+      value: -7.2
       objectReference: {fileID: 0}
     - target: {fileID: 4641953334109204, guid: a77d3c38dac614b7b924531f4d554837, type: 2}
       propertyPath: m_LocalPosition.z
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileGraph: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
-  _tileSet: {fileID: 11400000, guid: 961a13e30938ef34e8fd7dc360e9cb7f, type: 2}
+  _tileSet: {fileID: 11400000, guid: 5f7e3f582c8a42b4faeddf15aca11a96, type: 2}
   _boundaryTile: 0
   _substeps: 5
   _seed: 1
@@ -545,8 +545,8 @@ MonoBehaviour:
   _tileGraph: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
   _vertexPrefab: {fileID: 114922904220032880, guid: 2d3bfc3d1154a114a9d47325987aee28,
     type: 2}
-  _countX: 5
-  _countY: 5
+  _countX: 7
+  _countY: 9
   _countZ: 5
 --- !u!114 &1467768201
 MonoBehaviour:
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grid: {fileID: 11400000, guid: 0365da7037b3ab5479c126d42c55795a, type: 2}
-  _tileSet: {fileID: 11400000, guid: 961a13e30938ef34e8fd7dc360e9cb7f, type: 2}
+  _tileSet: {fileID: 11400000, guid: 5f7e3f582c8a42b4faeddf15aca11a96, type: 2}
   MaxForce: 10
   MaxTorque: 10
   Spectrum:

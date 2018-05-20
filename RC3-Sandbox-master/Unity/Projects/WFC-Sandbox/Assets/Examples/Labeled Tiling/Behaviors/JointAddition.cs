@@ -18,16 +18,16 @@ namespace RC3.Unity.Examples.LabeledTiling
         private Digraph _graph;
 
         [Range(0.0f, 10000.0f)]
-        [SerializeField]
-        private float MaxForce = 1000.0f;
+        [SerializeField] private float MaxForce = 1000.0f;
 
         [Range(0.0f, 10000.0f)]
-        [SerializeField]
-        private float MaxTorque = 1000.0f;
+        [SerializeField] private float MaxTorque = 1000.0f;
 
         private float BreakForce = Mathf.Infinity;
         private float BreakTorque = Mathf.Infinity;
 
+        private List<VertexObject> _emptyTiles;
+        private List<VertexObject> _meshedTiles;
         private List<VertexObject> _boundaries;
         private List<VertexObject> _vbodies;
         private List<Rigidbody> _bodies;
@@ -41,11 +41,13 @@ namespace RC3.Unity.Examples.LabeledTiling
 
         private void Start()
         {
-            // _list = new int[_tileSet.Count];
             _graph = _grid.Graph;
             _vertices = _grid.VertexObjects;
-            _vbodies = new List<VertexObject>();
-            _boundaries = new List<VertexObject>();
+            _emptyTiles = new List<VertexObject>();
+            _meshedTiles = new List<VertexObject>();
+
+            // _list = new int[_tileSet.Count];
+            //_boundaries = new List<VertexObject>();   
             // _materials = new Material[_vertices.Count]; 
             //CacheMaterials();
 
@@ -54,46 +56,19 @@ namespace RC3.Unity.Examples.LabeledTiling
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.J)) { AddJoints(); CheckLowest(); }
+            if (Input.GetKeyDown(KeyCode.J)) { StoreTilesWithMeshes(); AddJoints(); CheckLowest(); }
 
-            if (Input.GetKeyDown(KeyCode.G)) AddGravityLast();
+            if (Input.GetKeyDown(KeyCode.G)) AddGravity();
 
-            if (Input.GetKeyDown(KeyCode.B)) StoreBoundaries();
+            //if (Input.GetKeyDown(KeyCode.B)) StoreTilesWithMeshes();//StoreBoundaries();
+
+            if (Input.GetKeyDown(KeyCode.D)) DeleteEmpty();
         }
 
-        private void GetRigidbodies()
-        {
-            for (int i = 0; i < _vertices.Count; i++)
-            {
-                int counter = 0;
 
-                var v = _vertices[i];
-                if (v.Body.isKinematic == true)
-                {
-                    _bodies[counter] = v.Body;
-                    counter++;
-                }
-            }
-        }
-
-        private void AddGravity()
-        {
-            foreach (var v in _vertices)
-            {
-                if (v.Tile.name != _tileSet[0].name)
-                {
-                    var b = v.GetComponent<Rigidbody>();
-                    b.useGravity = true;
-                }
-                else if (v.Tile.name == _tileSet[0].name)
-                {
-                    Destroy(v);
-                    // v.Body.isKinematic = false;
-                    Debug.Log("0 tile!");
-                }
-            }
-        }
-
+        /// <summary>
+        /// Stores the boundary tiles in separate List<>
+        /// </summary>
         void StoreBoundaries()
         {
             int counter = 0;
@@ -112,11 +87,15 @@ namespace RC3.Unity.Examples.LabeledTiling
             Debug.Log(counter);
         }
 
-        void AddGravityLast()
+
+        /// <summary>
+        /// Add Gravity to the Tiles containing Meshes
+        /// </summary>
+        void AddGravity()
         {
-            if (_vbodies != null)
+            if (_meshedTiles != null)
             {
-                foreach (var r in _vbodies)
+                foreach (var r in _meshedTiles)
                 {
                     var body = r.Body;
                     body.useGravity = true;
@@ -124,32 +103,21 @@ namespace RC3.Unity.Examples.LabeledTiling
             }
         }
 
-
         private float SmallestDistance()
         {
-            // var transform = gameObject.GetComponentsInChildren<Transform>();
-            // Vector3 dist = new Vector3(20, 20);
-            // var dist0 = dist.magnitude;
-            float dist0 = 100; 
+            float dist0 = 100;
 
-            for (int i = 0; i < _graph.VertexCount; i++)
+            foreach (var v in _meshedTiles)
             {
-                //foreach (int j in _graph.GetVertexNeighborsOut(i))
-                //{
-                    var v = _vertices[i];
+                    var dist1 = v.transform.position.y;
 
-                    if (/*j != i &&*/ v.Tile.name != _tileSet[0].name)
+                    if (dist1 < dist0)
                     {
-                        var dist1 = v.transform.position.z;
-
-                        if(dist1<dist0)
-                        {
-                            dist0 = dist1;
-                        }
+                        dist0 = dist1;
                     }
-               // }
-               
             }
+    
+            Debug.Log("Smallest distance is" + dist0);
             return dist0;
         }
 
@@ -157,15 +125,12 @@ namespace RC3.Unity.Examples.LabeledTiling
         {
             var lowest = SmallestDistance();
 
-            for (int i = 0; i < _graph.VertexCount; i++)
-            {
-                var v = _vertices[i];
-
-                if (v.transform.position.z == lowest && v.Tile.name != _tileSet[0].name)
+            foreach (var v in _meshedTiles)
+            {               
+                if (v.transform.position.y == lowest)
                 {
                     v.Body.isKinematic = true;
                 }
-
             }
         }
 
@@ -180,7 +145,51 @@ namespace RC3.Unity.Examples.LabeledTiling
             }
         }
 
-    
+        private void StoreTilesWithMeshes()
+        {
+            StoreEmptyTiles();
+
+            for (int i = 0; i < _graph.VertexCount; i++)
+            {
+                var v = _vertices[i];
+
+                if (_emptyTiles.Contains(v) == false)
+                {
+                    _meshedTiles.Add(v);
+                }
+                else continue;
+            }
+            Debug.Log("Meshed are" + _meshedTiles.Count);
+            Debug.Log("Empty are" + _emptyTiles.Count);
+        }
+     
+        /// <summary>
+        /// Called from StoreTilesWithMeshes !!!
+        /// </summary>
+        private void StoreEmptyTiles()
+        {
+            for (int i = 0; i < _graph.VertexCount; i++)
+            {
+                var v = _vertices[i];
+                
+                if (v.Tile.name == _tileSet[0].name)
+                {
+                    _emptyTiles.Add(v);                   
+                }
+            }
+        }
+
+        private void DeleteEmpty()
+        {
+            if (_emptyTiles != null)
+            {
+                foreach (var v in _emptyTiles)
+                {
+                    Destroy(v.Body);
+                    Destroy(v);
+                }
+            }
+        }
 
         private void AddJoints()
         {
@@ -205,18 +214,12 @@ namespace RC3.Unity.Examples.LabeledTiling
                         joint.breakForce = BreakForce;
                         joint.breakTorque = BreakTorque;
 
-                        if (_vbodies.Contains(v) == false) _vbodies.Add(v);
+                      //  if (_vbodies.Contains(v) == false) _vbodies.Add(v);
 
-                        Debug.Log(_vbodies.Count);
+                      //  Debug.Log(_vbodies.Count);
 
                     }
                 }
-
-                //if (v.Tile.name == _tileSet[0].name)
-                //{                   
-                //    Destroy(v.Body);
-                //    Destroy(v);
-                //}
                 
             }
         }
