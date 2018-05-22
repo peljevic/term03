@@ -14,6 +14,7 @@ MonoBehaviour:
   _tiles:
   - {fileID: 11400000, guid: bc36edd55a9de1548ae0e8dc7157c494, type: 2}
   - {fileID: 11400000, guid: 7fe22aab389f4914b896143c4d060b5c, type: 2}
+  - {fileID: 11400000, guid: bb824c1cd9df7054aaffb9c7024efe0f, type: 2}
   - {fileID: 11400000, guid: e7d5e7564d7078447b07177f7ddfe63b, type: 2}
   - {fileID: 11400000, guid: 458ac30a870666546b5c8c492a0bee01, type: 2}
   - {fileID: 11400000, guid: d960f8421f59331459cfd4c620273637, type: 2}
@@ -32,4 +33,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5da8db41ca54d2049815458fb063ff0e, type: 2}
   - {fileID: 11400000, guid: ff33ec6fd42887442afb6479cca65112, type: 2}
   - {fileID: 11400000, guid: 9728e4ad954e7a8418b44c0e4aff8252, type: 2}
-  - {fileID: 11400000, guid: bb824c1cd9df7054aaffb9c7024efe0f, type: 2}

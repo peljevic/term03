@@ -15,7 +15,7 @@ namespace RC3.Unity.Examples.LabeledTiling
     /// <summary>
     /// 
     /// </summary>
-    public class TilePropagator : MonoBehaviour
+    public class TilePropagator2TileSet : MonoBehaviour
     {
         [SerializeField] private SharedDigraph _tileGraph;
         [SerializeField] private TileSet _tileSet;
@@ -71,9 +71,34 @@ namespace RC3.Unity.Examples.LabeledTiling
         /// <param name="position"></param>
         /// <param name="tile"></param>
         private void OnAssigned(int position, int tile)
-        {           
+        {
+            List<int> nv = new List<int>();
+
+            StoreNames();
+
+            foreach (var n in _graph.GetVertexNeighborsOut(position))
+            {
+                if (_verts[n].Tile != null)
+                {
+                    var neigh = _verts[n];
+
+                    if (names.Contains(neigh.Tile.name))
+                        nv.Add(n);
+                    //Debug.Log(nv.Count);
+                }
+            }
+
+            if (nv.Count > 2)
+            {
+                Debug.Log("Entered");
+                _verts[position].Tile = _tileSet_1[tile];
+            }
+
+            //else
+            {
+                // Debug.Log("First Set");
                 _verts[position].Tile = _tileSet[tile];
-            
+            }
         }
 
 
@@ -98,10 +123,10 @@ namespace RC3.Unity.Examples.LabeledTiling
         {
             if (_boundaryTile < 0)
                 return;
-            
-            for(int i = 0; i < _graph.VertexCount; i++)
+
+            for (int i = 0; i < _graph.VertexCount; i++)
             {
-                foreach(int j in _graph.GetVertexNeighborsOut(i))
+                foreach (int j in _graph.GetVertexNeighborsOut(i))
                 {
                     if (j == i)
                     {
@@ -112,7 +137,7 @@ namespace RC3.Unity.Examples.LabeledTiling
             }
         }
 
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -146,7 +171,7 @@ namespace RC3.Unity.Examples.LabeledTiling
                         Debug.Log("Collapse complete!");
                         return;
                     }
-                    
+
                     _model.Propagate();
                 }
             }

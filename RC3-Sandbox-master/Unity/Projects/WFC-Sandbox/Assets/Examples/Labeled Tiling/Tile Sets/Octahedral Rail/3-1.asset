@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8659d01aa4c9da447976bb89c1548cf2, type: 3}
   m_Name: 3-1
   m_EditorClassIdentifier: 
-  _mesh: {fileID: 4300046, guid: 41366d3d2a8ad734b97add9dab91b943, type: 3}
+  _mesh: {fileID: 4300026, guid: 41fe5a1920f26a64e90ec864d54bd700, type: 3}
   _material: {fileID: 2100000, guid: d549c402b02faf34988a940860785b57, type: 2}
   _labels:
   - 0
