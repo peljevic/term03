@@ -94,7 +94,7 @@ namespace RC3.Unity.Examples.LabeledTiling
                 _verts[position].Tile = _tileSet_1[tile];
             }
 
-            //else
+            else
             {
                 // Debug.Log("First Set");
                 _verts[position].Tile = _tileSet[tile];

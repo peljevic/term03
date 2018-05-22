@@ -17,6 +17,7 @@ namespace RC3.Unity.Examples.LabeledTiling
     /// </summary>
     public class OctahedralGraphCreator : MonoBehaviour
     {
+        [SerializeField] SharedSelection _ignored;
         [SerializeField] SharedDigraph _tileGraph;
         [SerializeField] VertexObject _vertexPrefab;
         [SerializeField] private int _countX = 10;

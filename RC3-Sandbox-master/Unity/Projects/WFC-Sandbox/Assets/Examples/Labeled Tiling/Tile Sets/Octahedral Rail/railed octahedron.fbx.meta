@@ -99,7 +99,7 @@ ModelImporter:
       name: Material_1
     second: {fileID: 2100000, guid: 5ee198029c427934796a3222cf6c40f9, type: 2}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -150,7 +150,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

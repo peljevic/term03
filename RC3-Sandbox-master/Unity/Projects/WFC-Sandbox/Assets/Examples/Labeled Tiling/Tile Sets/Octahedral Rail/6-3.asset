@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: 6-3
   m_EditorClassIdentifier: 
   _mesh: {fileID: 4300002, guid: 41fe5a1920f26a64e90ec864d54bd700, type: 3}
-  _material: {fileID: 2100000, guid: c21effe24b9e0f340b9a33de5617e94c, type: 2}
+  _material: {fileID: 2100000, guid: d549c402b02faf34988a940860785b57, type: 2}
   _labels:
-  - 2
+  - 1
   - 0
   - 0
   - 0
@@ -25,6 +25,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 2
+  - 1
   - 0
   - 0
