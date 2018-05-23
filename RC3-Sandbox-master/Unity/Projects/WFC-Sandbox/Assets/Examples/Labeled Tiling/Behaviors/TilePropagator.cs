@@ -51,6 +51,18 @@ namespace RC3.Unity.Examples.LabeledTiling
             _status = CollapseStatus.Incomplete;
 
             AssignBoundary();
+
+
+            int vertex = 5;
+
+            int tileIndex = _model.GetAssignedTile(vertex);
+            var tile = _tileSet[tileIndex];
+
+           // if(tile.Labels[0] == "1")
+                // create a fixed join between vertex onbjecgs
+
+
+            //_tileSet[]
         }
 
         private void StoreNames()
