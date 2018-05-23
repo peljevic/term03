@@ -185,8 +185,9 @@ namespace RC3.Unity.Examples.LabeledTiling
             {
                 foreach (var v in _emptyTiles)
                 {
-                    Destroy(v.Body);
-                    Destroy(v);
+                    Destroy(v.gameObject);
+                   // Destroy(v.Body);
+                   // Destroy(v);
                 }
             }
         }
