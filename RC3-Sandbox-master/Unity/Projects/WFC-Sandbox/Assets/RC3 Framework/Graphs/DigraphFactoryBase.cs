@@ -912,19 +912,6 @@ namespace RC3.Graphs
                         int i = x + y * countX + z * countXY;
                         int j = i + count;
 
-                        /* x-1
-                        if (x > 0)
-                            g.AddEdge(i, i - 1);
-                        else
-                            g.AddEdge(i, i);
-
-                        // x+1
-                        if (x < lastX)
-                            g.AddEdge(i, i + 1);
-                        else
-                            g.AddEdge(i, i);
-                       */
-
                         // y-1
                         if (y > 0)
                             g.AddEdge(i, i - countX);
@@ -1007,18 +994,6 @@ namespace RC3.Graphs
                         int i = x + y * countX + z * countXY;
                         int j = i + count;
 
-                        /* x-1
-                        if (x > 0)
-                            g.AddEdge(j, j - 1);
-                        else
-                            g.AddEdge(j, j);
-
-                        // x+1
-                        if (x < lastX)
-                            g.AddEdge(j, j + 1);
-                        else
-                            g.AddEdge(j, j);
-                        */
 
                         // y-1
                         if (y > 0)
